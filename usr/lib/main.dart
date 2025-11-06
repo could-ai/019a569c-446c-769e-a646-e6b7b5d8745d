@@ -47,14 +47,14 @@ class _LocationReceiverPageState extends State<LocationReceiverPage> {
 
   void _initReceivingIntent() {
     // For sharing intent while app is closed
-    ReceiveSharingIntent.getInitialText().then((String? value) {
+    ReceiveSharingIntent.instance.getInitialText().then((String? value) {
       if (value != null) {
         _processSharedContent(value);
       }
     });
 
     // For sharing intent while app is running
-    _intentDataStreamSubscription = ReceiveSharingIntent.getTextStream().listen(
+    _intentDataStreamSubscription = ReceiveSharingIntent.instance.getTextStream().listen(
       (String value) {
         _processSharedContent(value);
       },
